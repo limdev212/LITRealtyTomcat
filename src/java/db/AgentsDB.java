@@ -50,6 +50,22 @@ public class AgentsDB {
 
     }
     
+    public static Agents getAgentByName(String name) {
+
+        EntityManager em = DBUtil.getEmf().createEntityManager();
+        Agents a;
+        TypedQuery tq = em.createNamedQuery("Agents.findByUsername", Agents.class);
+        tq.setParameter("username", name);
+
+        try {
+            a = (Agents) tq.getSingleResult();
+        } finally {
+            em.close();
+        }
+
+        return a;
+    }
+    
     
     
 }

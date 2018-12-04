@@ -4,25 +4,25 @@
  * and open the template in the editor.
  */
 package servlets;
-
-import db.Properties;
-import db.PropertiesDB;
+import db.Agents;
+import db.AgentsDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.apache.shiro.SecurityUtils;
 
 /**
  *
- * @author James SSD
+ * @author James
  */
-@WebServlet(name = "IndexServlet", urlPatterns = {"/IndexServlet"})
-public class IndexServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,13 +37,15 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            List<Properties> recentProperties = PropertiesDB.getRecentProperties();
-
-            request.setAttribute("recentProperties", recentProperties);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            HttpSession session = request.getSession();
+          org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
+          String agentDetails = (String) currentUser.getPrincipal();
+          
+          Agents a = AgentsDB.getAgentByName(agentDetails);
+          session.setAttribute("loginAgent", a);
+          
+          RequestDispatcher rd = request.getRequestDispatcher("AdminIndex");
+          rd.forward(request, response);
         }
     }
 

@@ -50,6 +50,23 @@ public class PropertiesDB {
 
     }
     
+    public static List<Properties> getRecentProperties() {
+        EntityManager em = DBUtil.getEmf().createEntityManager();
+        String q = "SELECT p from Properties p ORDER BY p.dateAdded DESC";
+        TypedQuery<Properties> tq = em.createQuery(q, Properties.class);
+        List<Properties> list;
+
+        try {
+            list = tq.setMaxResults(6).getResultList();
+            if (list == null || list.isEmpty()) {
+                list = null;
+            }
+        } finally {
+            em.close();
+        }
+        return list;
+    }
+    
     public static Properties getPropertyByID(Integer id) {
         
         EntityManager em = DBUtil.getEmf().createEntityManager();
@@ -86,6 +103,36 @@ public class PropertiesDB {
         
         return p;
 
+    }
+     
+     public static void insertProperty(Properties p) {
+        EntityManager em = DBUtil.getEmf().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            em.persist(p);
+            trans.commit();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            em.close();
+        }
+    }
+     
+     public static void updateProperty(Properties p) {
+        EntityManager em = DBUtil.getEmf().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            em.merge(p);
+            trans.commit();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        } finally {
+            em.close();
+        }
     }
     
 }

@@ -143,7 +143,13 @@
                                 Street Address: <input type="text"  class="form-control" name="street" id="contact-name" placeholder="Street Address">
                             </div>
                             <div class="form-group">
+                                Description: <textarea style="height:80px" class="form-control" name="description" id="message" cols="30" rows="10" placeholder="Description">${property.description}</textarea>
+                            </div>
+                            <div class="form-group">
                                 City: <input type="text" class="form-control" name="city" id="contact-name" placeholder="City">
+                            </div>
+                            <div class="form-group">
+                                Agent: <input type="text" value="${agent.id}" class="form-control" name="agent" id="contact-name" placeholder="City">
                             </div>
                             <div class="form-group">
                                 Price: <input type="number" class="form-control" name="price" id="contact-number" placeholder="Price">

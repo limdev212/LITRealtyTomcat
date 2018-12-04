@@ -83,7 +83,7 @@
                                 
                                 <li><a href="MyProperties">Properties</a></li>
                                 <li><a href="MyInquiries">Inquiries</a></li>
-                                <li><a href="AddNewProperty">Add New Property</a></li>
+                                <li><a href="AddProperty">Add New Property</a></li>
                                 
                                 
                             </ul>
@@ -156,33 +156,46 @@
                 <div class="col-12 col-lg-12">
                     <img src=""
                     <div class="contact-form">
-                        <form action="#" method="post">
+                        <form action="SaveEditServlet" method="post">
                             <div class="form-group">
-                                Street Address: <input type="text" value="${property.street}" class="form-control" name="text" id="contact-name" placeholder="Street Address">
+                                Street Address: <input type="text" value="${property.street}" class="form-control" name="street" id="contact-name" placeholder="Street Address">
                             </div>
                             <div class="form-group">
-                                City: <input type="text" value="${property.city}" class="form-control" name="text" id="contact-name" placeholder="City">
+                                Description: <textarea style="height:80px" class="form-control" name="description" id="message" cols="30" rows="10" placeholder="Description">${property.description}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                City: <input type="text" value="${property.city}" class="form-control" name="city" id="contact-name" placeholder="City">
+                            </div>
+                            <div style="display:none" class="form-group">
+                                Agent: <input type="text" value="${property.agentId}" class="form-control" name="agent" id="contact-name" placeholder="City">
+                            </div>
+                            <div style="display:none" class="form-group">
+                                ID:  <input type="text" value="${property.id}" class="form-control" name="propertyid" id="contact-name" placeholder="Property ID">
                             </div>
                             <div class="form-group">
-                                Price: <input type="number" value="${property.price}" class="form-control" name="number" id="contact-number" placeholder="Price">
+                                Price: <input type="number" value="${property.price}" class="form-control" name="price" id="contact-number" placeholder="Price">
+                                </div>
+                            <div class="form-group">
+                                Bedrooms: <input type="number" value="${property.bedrooms}" class="form-control" name="bedrooms" id="contact-number" placeholder="Bedrooms">
                             </div>
                             <div class="form-group">
-                                Bedrooms: <input type="number" value="${property.bedrooms}" class="form-control" name="number" id="contact-number" placeholder="Bedrooms">
+                                Bathrooms:<input type="number" value="${property.bathrooms}" class="form-control" name="bathrooms" id="contact-number" placeholder="Bathrooms">
                             </div>
                             <div class="form-group">
-                                Bathrooms:<input type="number" value="${property.bathrooms}" class="form-control" name="number" id="contact-number" placeholder="Bathrooms">
+                                SQ. Feet: <input type="number" value="${property.squarefeet}" class="form-control" name="squarefeet" id="contact-number" placeholder="SQ Feet">
                             </div>
                             <div class="form-group">
-                                SQ. Feet: <input type="number" value="${property.squarefeet}" class="form-control" name="number" id="contact-number" placeholder="SQ Feet">
+                                BER Rating: <input type="text" value="${property.berRating}" class="form-control" name="ber" id="contact-name" placeholder="BER Rating">
                             </div>
                             <div class="form-group">
-                                BER Rating: <input type="text" value="${property.berRating}" class="form-control" name="text" id="contact-name" placeholder="BER Rating">
+                                Listing Number: <input type="text" value="${property.listingNum}" class="form-control" name="listingnum" id="contact-name" placeholder="Listing Number">
                             </div>
                             <div class="form-group">
-                                Lot Size: <input type="text" value="${property.lotsize}" class="form-control" name="text" id="contact-name" placeholder="Lot Size">
+                                Lot Size: <input type="text" value="${property.lotsize}" class="form-control" name="lotsize" id="contact-name" placeholder="Lot Size">
                             </div>
                             <div class="form-group">
-                                Garage Size: <input type="text" value="${property.garagesize}" class="form-control" name="text" id="contact-name" placeholder="Garage Size">
+                                Garage Size: <input type="text" value="${property.garagesize}" class="form-control" name="garagesize" id="contact-name" placeholder="Garage Size">
                             </div>
                             <div class="row">
                             <div class="form-group">
@@ -231,7 +244,7 @@
                                     Property Type: 
                                 <c:choose>
                                     <c:when test="${propertytype.typeId=='1'}">
-                                        <select class="form-control" name="garagetype">
+                                        <select class="form-control" name="propertytype">
                                             <option selected="selected" value="1">Residential</option>
                                             <option value="2">Residential Multi</option>
                                             <option value="3">Commercial</option>
@@ -239,14 +252,14 @@
                                         </select>
                                     </c:when>
                                         <c:when test="${propertytype.typeId=='2'}">
-                                        <select class="form-control" name="garagetype">
+                                        <select class="form-control" name="propertytype">
                                             <option value="1">Residential</option>
                                             <option selected="selected" value="2">Residential Multi</option>
                                             <option value="3">Commercial</option>
                                         </select>
                                     </c:when>
                                         <c:when test="${propertytype.typeId=='3'}">
-                                        <select class="form-control" name="garagetype">
+                                        <select class="form-control" name="propertytype">
                                             <option value="1">Residential</option>
                                             <option value="2">Residential Multi</option>
                                             <option selected="selected" value="3">Commercial</option>
@@ -261,7 +274,7 @@
                             <div class="form-group">
                                 <div class="col-12 col-md-12 col-lg-12">
                                     Style
-                                    <select class="form-control" name="garagetype">
+                                    <select class="form-control" name="styletype">
                                         <c:choose>
                                             <c:when test="${style.styleId=='1'}">
                                                 <option selected="selected" value="1">Bungalow</option>
