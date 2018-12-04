@@ -81,7 +81,7 @@ public class SaveEditServlet extends HttpServlet {
 
             PropertiesDB.updateProperty(p);
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("AdminIndex?agentid=" + a.getAgentId());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("AdminIndex");
             dispatcher.forward(request, response);
             
             

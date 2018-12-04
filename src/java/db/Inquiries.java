@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Inquiries.findAll", query = "SELECT i FROM Inquiries i")
     , @NamedQuery(name = "Inquiries.findByInquiryId", query = "SELECT i FROM Inquiries i WHERE i.inquiryId = :inquiryId")
     , @NamedQuery(name = "Inquiries.findByAgentId", query = "SELECT i FROM Inquiries i WHERE i.agentId = :agentId")
+    , @NamedQuery(name = "Inquiries.findByPropertyId", query = "SELECT i FROM Inquiries i WHERE i.propertyId = :propertyId")
     , @NamedQuery(name = "Inquiries.findByName", query = "SELECT i FROM Inquiries i WHERE i.name = :name")
     , @NamedQuery(name = "Inquiries.findByEmail", query = "SELECT i FROM Inquiries i WHERE i.email = :email")})
 public class Inquiries implements Serializable {
@@ -42,6 +43,9 @@ public class Inquiries implements Serializable {
     @Basic(optional = false)
     @Column(name = "agentId")
     private int agentId;
+    @Basic(optional = false)
+    @Column(name = "propertyId")
+    private int propertyId;
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
@@ -60,9 +64,10 @@ public class Inquiries implements Serializable {
         this.inquiryId = inquiryId;
     }
 
-    public Inquiries(Integer inquiryId, int agentId, String name, String email, String message) {
+    public Inquiries(Integer inquiryId, int agentId, int propertyId, String name, String email, String message) {
         this.inquiryId = inquiryId;
         this.agentId = agentId;
+        this.propertyId = propertyId;
         this.name = name;
         this.email = email;
         this.message = message;
@@ -82,6 +87,14 @@ public class Inquiries implements Serializable {
 
     public void setAgentId(int agentId) {
         this.agentId = agentId;
+    }
+
+    public int getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
     }
 
     public String getName() {

@@ -12,7 +12,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>My Properties | LIT Realty </title>
+    <title>Add Property | LIT Realty </title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -148,9 +148,7 @@
                             <div class="form-group">
                                 City: <input type="text" class="form-control" name="city" id="contact-name" placeholder="City">
                             </div>
-                            <div class="form-group">
-                                Agent: <input type="text" value="${agent.id}" class="form-control" name="agent" id="contact-name" placeholder="City">
-                            </div>
+                            
                             <div class="form-group">
                                 Price: <input type="number" class="form-control" name="price" id="contact-number" placeholder="Price">
                             </div>
@@ -167,7 +165,7 @@
                                 SQ. Feet: <input type="number" class="form-control" name="squarefeet" id="contact-number" placeholder="SQ Feet">
                             </div>
                             <div class="form-group">
-                                BER Rating: <input type="text" class="form-control" name="berrating" id="contact-name" placeholder="BER Rating">
+                                BER Rating: <input type="text" class="form-control" name="ber" id="contact-name" placeholder="BER Rating">
                             </div>
                             <div class="form-group">
                                 Lot Size: <input type="text" class="form-control" name="lotsize" id="contact-name" placeholder="Lot Size">

@@ -4,18 +4,10 @@
  * and open the template in the editor.
  */
 package servlets;
+
 import db.Agents;
 import db.Inquiries;
 import db.InquiriesDB;
-import db.Properties;
-import db.Propertytypes;
-import db.Garagetypes;
-import db.Styles;
-import db.StylesDB;
-import db.PropertiesDB;
-import db.PropertytypesDB;
-import db.AgentsDB;
-import db.GarageDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -31,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author James
  */
-@WebServlet(name = "EditProperty", urlPatterns = {"/EditProperty"})
+@WebServlet(name = "ViewInquiries", urlPatterns = {"/ViewInquiries"})
 public class ViewInquiries extends HttpServlet {
 
     /**
@@ -54,11 +46,9 @@ public class ViewInquiries extends HttpServlet {
             List<Inquiries> iList = InquiriesDB.getInquiriesByAgentID(agentID);
             request.setAttribute("list", iList);
             
-            RequestDispatcher rd = request.getRequestDispatcher("no-permission.jsp");
+            
+            RequestDispatcher rd = request.getRequestDispatcher("inquiries-index.jsp");
             rd.forward(request, response);
-            
-            
-            
         
     }
 

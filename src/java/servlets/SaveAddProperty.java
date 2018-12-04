@@ -4,20 +4,14 @@
  * and open the template in the editor.
  */
 package servlets;
+
 import db.Agents;
-import db.Vendors;
-import db.VendorsDB;
-import db.Properties;
-import db.Propertytypes;
-import db.Garagetypes;
-import db.Styles;
-import db.StylesDB;
-import db.PropertiesDB;
-import db.PropertytypesDB;
 import db.AgentsDB;
-import db.GarageDB;
+import db.Properties;
+import db.PropertiesDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author James
  */
-@WebServlet(name = "EditProperty", urlPatterns = {"/EditProperty"})
-public class EditProperty extends HttpServlet {
+@WebServlet(name = "SaveAddProperty", urlPatterns = {"/SaveAddProperty"})
+public class SaveAddProperty extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,45 +40,53 @@ public class EditProperty extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-            Integer propertyId = Integer.parseInt(request.getParameter("id"));
+            String street = request.getParameter("street");
+            String description = request.getParameter("description");
+            String listingnum = request.getParameter("listingnum");
+            String city = request.getParameter("city");
+            String price = request.getParameter("price");
+            String bedrooms = request.getParameter("bedrooms");
+            String bathrooms = request.getParameter("bathrooms");
+            String squarefeet = request.getParameter("squarefeet");
+            String ber = request.getParameter("ber");
+            String lotsize = request.getParameter("lotsize");
+            String garagesize = request.getParameter("garagesize");
+            String garagetype = request.getParameter("garagetype");
+            String propertytype = request.getParameter("propertytype");
+            String style = request.getParameter("styletype");
+            String propertyid = request.getParameter("propertyid");
             
-            Properties p = PropertiesDB.getPropertyByID(propertyId);
-            request.setAttribute("property", p);
-            
-            Agents a = AgentsDB.getAgentByID(p.getAgentId());
-            
-            request.setAttribute("agent", a);
-            
-            Garagetypes g = GarageDB.getGarageTypeByID(p.getGarageId());
-            
-            request.setAttribute("garagetype", g);
-            
-            Propertytypes pt = PropertytypesDB.getPropertytypesByID(p.getTypeId());
-            
-            request.setAttribute("propertytype", pt);
-            
-            Styles s = StylesDB.getStyleByID(p.getStyleId());
-            
-            request.setAttribute("style", s);
-            
-            // No time to test this code sufficiently
-            //Vendors v = VendorsDB.getVendorByID(p.getVendorId());
-            
-            //request.setAttribute("vendor", v);
             
             HttpSession session = request.getSession();
             Agents agent = (Agents) session.getAttribute("loginAgent");
             Integer agentID = agent.getAgentId();
             
-            if (agentID == a.getAgentId()){
-                RequestDispatcher rd = request.getRequestDispatcher("edit-property.jsp");
-                rd.forward(request, response);
-            } else {
-                RequestDispatcher rd = request.getRequestDispatcher("no-permission.jsp");
-                rd.forward(request, response);
-            }
+            Properties p = new Properties();
+            p.setId(0);
+            p.setAgentId(agentID);
+            p.setStreet(street);
+            p.setCity(city);
+            p.setListingNum(Integer.valueOf(listingnum));
+            p.setStyleId(Integer.valueOf(style));
+            p.setTypeId(Integer.valueOf(propertytype));
+            p.setBedrooms(Integer.valueOf(bedrooms));
+            p.setBathrooms(Float.valueOf(bathrooms));
+            p.setSquarefeet(Integer.valueOf(squarefeet));
+            p.setBerRating(ber);
+            p.setDescription(description);
+            p.setLotsize(lotsize);
+            p.setGaragesize(Short.valueOf(garagesize));
+            p.setGarageId(Integer.valueOf(garagetype));
+            p.setPhoto(listingnum + ".jpg");
+            p.setPrice(Double.valueOf(price));
+            Date d = new Date();
+
+            p.setDateAdded(d);
+
+            PropertiesDB.insertProperty(p);
             
-            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("AdminIndex");
+            dispatcher.forward(request, response);
         
     }
 

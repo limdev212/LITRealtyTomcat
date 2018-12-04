@@ -4,18 +4,9 @@
  * and open the template in the editor.
  */
 package servlets;
-import db.Agents;
-import db.Vendors;
-import db.VendorsDB;
+
 import db.Properties;
-import db.Propertytypes;
-import db.Garagetypes;
-import db.Styles;
-import db.StylesDB;
 import db.PropertiesDB;
-import db.PropertytypesDB;
-import db.AgentsDB;
-import db.GarageDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -24,14 +15,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author James
  */
-@WebServlet(name = "EditProperty", urlPatterns = {"/EditProperty"})
-public class EditProperty extends HttpServlet {
+@WebServlet(name = "SaveDeleteProperty", urlPatterns = {"/SaveDeleteProperty"})
+public class SaveDeleteProperty extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,47 +35,31 @@ public class EditProperty extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-            Integer propertyId = Integer.parseInt(request.getParameter("id"));
+        try (PrintWriter out = response.getWriter()) {
+            String action = request.getParameter("confirmdelete");
             
-            Properties p = PropertiesDB.getPropertyByID(propertyId);
-            request.setAttribute("property", p);
-            
-            Agents a = AgentsDB.getAgentByID(p.getAgentId());
-            
-            request.setAttribute("agent", a);
-            
-            Garagetypes g = GarageDB.getGarageTypeByID(p.getGarageId());
-            
-            request.setAttribute("garagetype", g);
-            
-            Propertytypes pt = PropertytypesDB.getPropertytypesByID(p.getTypeId());
-            
-            request.setAttribute("propertytype", pt);
-            
-            Styles s = StylesDB.getStyleByID(p.getStyleId());
-            
-            request.setAttribute("style", s);
-            
-            // No time to test this code sufficiently
-            //Vendors v = VendorsDB.getVendorByID(p.getVendorId());
-            
-            //request.setAttribute("vendor", v);
-            
-            HttpSession session = request.getSession();
-            Agents agent = (Agents) session.getAttribute("loginAgent");
-            Integer agentID = agent.getAgentId();
-            
-            if (agentID == a.getAgentId()){
-                RequestDispatcher rd = request.getRequestDispatcher("edit-property.jsp");
-                rd.forward(request, response);
+            Properties p = new Properties();
+            if (action == "delete"){
+                p.setStatus("deleted");
+                PropertiesDB.updateProperty(p);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminIndex");
+                dispatcher.forward(request, response);
+            } else if (action == "archive"){
+                p.setStatus("archive");
+                PropertiesDB.updateProperty(p);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminIndex");
+                dispatcher.forward(request, response);
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("no-permission.jsp");
-                rd.forward(request, response);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("AdminIndex");
+                dispatcher.forward(request, response);
             }
             
             
-        
+            
+            
+            
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

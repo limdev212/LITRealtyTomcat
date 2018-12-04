@@ -12,7 +12,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>South - Real Estate Agency Template | Listings Details</title>
+    <title>Delete Property | LIT Realty</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -127,7 +127,7 @@
                         <p class="location"><img src="img/icons/location.png" alt="">${property.city}</p>
                         <p>${property.description}</p>
                         
-                        <form action="">
+                        <form action="SaveDeleteProperty">
                             <select class="form-control" name="confirmdelete">
                                 <option value="nodelete" selected="selected">Don't Delete</option>
                                 <option value="archive" >Archive Property</option>

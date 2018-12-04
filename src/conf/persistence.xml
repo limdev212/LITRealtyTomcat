@@ -8,6 +8,7 @@
     <class>db.Properties</class>
     <class>db.Propertytypes</class>
     <class>db.Inquiries</class>
+    <class>db.Vendors</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/litrealty?zeroDateTimeBehavior=convertToNull"/>

@@ -155,7 +155,7 @@
                                 <td>${p.bathrooms}</td>
                                 <td>${p.price}</td>
                                 <td>${p.typeId}</td> 
-                                <td><img src="img/thumbs/${p.photo}"></td> 
+                                <td><a href="ViewProperty?id=${p.id}"><img src="img/thumbs/${p.photo}"></a></td> 
                             </tr>
     
                         </c:forEach>  

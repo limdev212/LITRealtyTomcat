@@ -78,26 +78,12 @@
                       <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="IndexServlet">Dashboard</a></li>
-                                
-                                
-                                <li><a href="MyProperties">Properties</a></li>
-                                <li><a href="MyInquiries">Inquiries</a></li>
-                                <li><a href="AddNewProperty">Add New Property</a></li>
-                                
-                                
+                                <li><a href="AdminIndex">Dashboard</a></li>
+                                <li><a href="ViewInquiries">Inquiries</a></li>
+                                <li><a href="AddProperty">Add New Property</a></li>
+                                <li><a href="logout">Log Out</a></li>
                             </ul>
-
-                            <!-- Search Form -->
-                            <div class="south-search-form">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search Anything ...">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-
-                            <!-- Search Button -->
-                            <a href="#" class="searchbtn"><i class="fa" aria-hidden="true"></i></a>
+                               
                         </div>
                         <!-- Nav End -->
                     </div>

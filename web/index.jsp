@@ -80,9 +80,9 @@
                                 
                                 <li><a href="AboutServlet">About Us</a></li>
                                 <li><a href="ListingsServlet">Properties</a></li>
-                                <li><a href="blog.html">Blog</a></li>
                                 
-                                <li><a href="contact.html">Contact</a></li>
+                                
+                                <li><a href="ContactServlet">Contact</a></li>
                             </ul>
 
                             <!-- Search Form -->
@@ -234,9 +234,49 @@
                   
                 
                  <c:forEach items="${recentProperties}" var="p" varStatus="status">
-                            ${p.street}
+                     <!-- Single Featured Property -->
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
+                        <!-- Property Thumbnail -->
+                        <div class="property-thumb">
+                            <img src="images/properties/large/${p.listingNum}/${p.listingNum}.JPG" alt="">
+
+                            <div class="tag">
+                                <span>For Sale</span>
+                            </div>
+                            <div class="list-price">
+                                <p>${p.price}</p>
+                            </div>
+                        </div>
+                        <!-- Property Content -->
+                        <div class="property-content">
+                            <h5> ${p.street}</h5>
+                            <p class="location">${p.city}</p>
+                            <p>${p.description}</p>
+                            <div class="property-meta-data d-flex align-items-end justify-content-between">
+                                <div class="new-tag">
+                                    <img src="img/icons/new.png" alt="">
+                                </div>
+                                <div class="bathroom">
+                                    <img src="img/icons/bathtub.png" alt="">
+                                    <span>${p.bathrooms}</span>
+                                </div>
+                                <div class="garage">
+                                    <img src="img/icons/garage.png" alt="">
+                                    <span>${p.garagesize} Garage Size</span>
+                                </div>
+                                <div class="space">
+                                    <img src="img/icons/space.png" alt="">
+                                    <span>${p.squarefeet}S.Q. Ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
     
-                        </c:forEach>  
+                </c:forEach>  
 
                 
             </div>

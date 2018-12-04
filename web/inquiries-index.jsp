@@ -12,14 +12,14 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>View Property | LIT Realty</title>
+    <title>South - Real Estate Agency Template | Contact</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">
-    <script src="js/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 </head>
 
 <body>
@@ -28,6 +28,7 @@
         <div class="south-load"></div>
     </div>
 
+    <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -37,7 +38,9 @@
                     <a href="mailto:contact@southtemplate.com">contact@southtemplate.com</a>
                 </div>
                 <div class="phone-number d-flex">
-                    
+                    <div class="icon">
+                        <img src="img/icons/phone-call.png" alt="">
+                    </div>
                     <div class="number">
                         <shiro:guest>
                         <a href="login.jsp">Login</a>
@@ -72,28 +75,15 @@
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
 
-                        <!-- Nav Start -->
+                      <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="IndexServlet">Home</a></li>
-                                
-                                <li><a href="AboutServlet">About Us</a></li>
-                                <li><a href="ListingsServlet">Properties</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="AdminIndex">Dashboard</a></li>
+                                <li><a href="ViewInquiries">Inquiries</a></li>
+                                <li><a href="AddProperty">Add New Property</a></li>
+                                <li><a href="logout">Log Out</a></li>
                             </ul>
-
-                            <!-- Search Form -->
-                            <div class="south-search-form">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search Anything ...">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-
-                            <!-- Search Button -->
-                            <a href="#" class="searchbtn"><i class="fa" aria-hidden="true"></i></a>
+                               
                         </div>
                         <!-- Nav End -->
                     </div>
@@ -101,6 +91,7 @@
             </div>
         </div>
     </header>
+    <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
@@ -108,7 +99,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcumb-content">
-                        <h3 class="breadcumb-title">Property</h3>
+                        <h3 class="breadcumb-title">Listings</h3>
                     </div>
                 </div>
             </div>
@@ -116,115 +107,54 @@
     </section>
     <!-- ##### Breadcumb Area End ##### -->
 
-    
-
-    <!-- ##### Listings Content Area Start ##### -->
-    <section class="listings-content-wrapper section-padding-100">
+    <section class="south-contact-area section-padding-100">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <!-- Single Listings Slides -->
-                    <div class="single-listings-sliders owl-carousel">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-1.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-2.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-3.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-4.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img style="max-height: 400px" src="images/properties/large/${property.listingNum}/${property.listingNum}-5.jpg" alt="">
+                <div style="height: 80px" class="col-12">
+                    <div class="contact-heading">
+                        <h6>Listings</h6>
                     </div>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="listings-content">
-                        <!-- Price -->
-                        <div class="list-price">
-                            <p>&euro;${property.price}</p>
-                        </div>
-                        <h5>${property.street}</h5>
-                        <p class="location"><img src="img/icons/location.png" alt="">${property.city}</p>
-                        <p>${property.description}</p>
-                        <!-- Meta -->
-                        <div class="property-meta-data d-flex align-items-end">
-                            <div class="new-tag">
-                                <img src="img/icons/new.png" alt="">
-                            </div>
-                            <div class="bathroom">
-                                <img src="img/icons/bathtub.png" alt="">
-                                <span>${property.bathrooms}</span>
-                            </div>
-                            <div class="garage">
-                                <img src="img/icons/garage.png" alt="">
-                                <span>${property.garagesize}</span>
-                            </div>
-                            <div class="space">
-                                <img src="img/icons/space.png" alt="">
-                                <span>${property.squarefeet}</span>
-                            </div>
-                        </div>
-                        <!-- Core Features -->
-                        <ul class="listings-core-features d-flex align-items-center">
-                            <li><i class="fa fa-check" aria-hidden="true"></i>${property.bedrooms} Bedrooms</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i>${property.berRating}</li>
-                            
-                        </ul>
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="contact-realtor-wrapper">
-                        <div class="realtor-info">
-                            <img src="images//agents/${agent.agentId}.jpg" alt="">
-                            <div class="realtor---info">
-                                <h2>${agent.name}</h2>
-                                <p>Realtor</p>
-                                <h6><img src="img/icons/phone-call.png" alt=""> ${agent.phone}</h6>
-                                <h6><img src="img/icons/envelope.png" alt=""> ${agent.email}</h6>
-                            </div>
-                            <div class="realtor--contact-form">
-                                <form action="SaveInquiry" method="post">
-                                    <div class="form-group">
-                                        <input type="text" name="name" class="form-control" id="realtor-name" placeholder="Your Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="number" class="form-control" id="realtor-name" placeholder="Your Number">
-                                    </div>
-                                    <div style="display:none" class="form-group">
-                                        <input value="${agent.agentId}" type="text" name="agentid" class="form-control" id="realtor-number" placeholder="Your Number">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="enumber" name="email" class="form-control" id="realtor-email" placeholder="Your Mail">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" id="realtor-message" cols="30" rows="10" placeholder="Your Message"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn south-btn">Send Message</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Listing Maps -->
             <div class="row">
-                <div class="col-12">
-                    <div class="listings-maps mt-100">
-                        <h3 style="display:none" id="googlemapaddress">${p.street},${p.city}</h3>
-                        <div id="googleMap" style="width:100%;height:400px;"></div>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgfz1c1IoX_mcveNYhA_yMNIjPmjoR8U8&callback=myMap"></script>
-                    </div>
+                <div class="col-12 col-lg-12">
+                   
+                   <table id="table_id" class="display">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Property</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <c:forEach items="${list}" var="i" varStatus="status">
+                            <tr>
+                                <td>${i.name}</td>
+                                <td>${i.email}</td>
+                                <td>${i.message}</td>
+                                <td><a href="ViewProperty?id=${i.propertyId}">View Property</a></td>
+                            </tr>
+    
+                        </c:forEach>  
+                                
+                            
+                                
+                                
+                        </tbody>
+                    </table>
                 </div>
+
+             
+                
             </div>
         </div>
     </section>
-    <!-- ##### Listings Content Area End ##### -->
+
+   
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay" style="background-image: url(img/bg-img/cta.jpg);">
@@ -349,7 +279,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery-ui.min.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    <!-- Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
+    <script src="js/map-active.js"></script>
     
+    <script>
+        
+       $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );
+    </script>
+  
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 </body>
 

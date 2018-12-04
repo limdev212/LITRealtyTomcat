@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package db;
-import db.Inquiries;
+import db.Properties;
+
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -14,19 +16,19 @@ import javax.persistence.TypedQuery;
  *
  * @author James SSD
  */
-public class InquiriesDB {
+public class VendorsDB {
     
     
     
-    public static List<Inquiries> getInquiriesByAgentID(Integer id) {
+    public static List<Vendors> getVendorsByID(Integer id) {
         
         EntityManager em = DBUtil.getEmf().createEntityManager();
         
-        TypedQuery<Inquiries> tq = em.createNamedQuery("Inquiries.findByAgentId", Inquiries.class);
+        TypedQuery<Vendors> tq = em.createNamedQuery("Vendors.findByVendorId", Vendors.class);
         
         tq.setParameter("agentId", id);
 
-        List<Inquiries> pList;
+        List<Vendors> pList;
         try {
             pList = tq.getResultList();
         } finally {
@@ -35,22 +37,6 @@ public class InquiriesDB {
         
         return pList;
 
-    }
-    
-    
-    public static void insertInquiry(Inquiries i) {
-        EntityManager em = DBUtil.getEmf().createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-
-        try {
-            trans.begin();
-            em.persist(i);
-            trans.commit();
-        } catch (Exception ex) {
-            System.out.println(ex);
-        } finally {
-            em.close();
-        }
     }
     
     

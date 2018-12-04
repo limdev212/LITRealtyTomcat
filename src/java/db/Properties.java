@@ -46,7 +46,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Properties.findByAgentId", query = "SELECT p FROM Properties p WHERE p.agentId = :agentId")
     , @NamedQuery(name = "Properties.findByPhoto", query = "SELECT p FROM Properties p WHERE p.photo = :photo")
     , @NamedQuery(name = "Properties.findByPrice", query = "SELECT p FROM Properties p WHERE p.price = :price")
-    , @NamedQuery(name = "Properties.findByDateAdded", query = "SELECT p FROM Properties p WHERE p.dateAdded = :dateAdded")})
+    , @NamedQuery(name = "Properties.findByDateAdded", query = "SELECT p FROM Properties p WHERE p.dateAdded = :dateAdded")
+    , @NamedQuery(name = "Properties.findByStatus", query = "SELECT p FROM Properties p WHERE p.status = :status")})
 public class Properties implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -94,6 +95,9 @@ public class Properties implements Serializable {
     @Column(name = "dateAdded")
     @Temporal(TemporalType.DATE)
     private Date dateAdded;
+    @Basic(optional = false)
+    @Column(name = "status")
+    private String status;
 
     public Properties() {
     }
@@ -102,10 +106,11 @@ public class Properties implements Serializable {
         this.id = id;
     }
 
-    public Properties(Integer id, String berRating, Date dateAdded) {
+    public Properties(Integer id, String berRating, Date dateAdded, String status) {
         this.id = id;
         this.berRating = berRating;
         this.dateAdded = dateAdded;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -250,6 +255,14 @@ public class Properties implements Serializable {
 
     public void setDateAdded(Date dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
