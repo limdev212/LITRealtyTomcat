@@ -138,7 +138,7 @@
                 <div class="col-12 col-lg-12">
                     <img src=""
                     <div class="contact-form">
-                        <form action="#" method="post">
+                        <form action="SaveAddProperty" method="post">
                             <div class="form-group">
                                 Street Address: <input type="text"  class="form-control" name="street" id="contact-name" placeholder="Street Address">
                             </div>

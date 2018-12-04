@@ -233,7 +233,10 @@
             <div class="row">
                   
                 
-                
+                 <c:forEach items="${recentProperties}" var="p" varStatus="status">
+                            ${p.street}
+    
+                        </c:forEach>  
 
                 
             </div>

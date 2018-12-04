@@ -5,6 +5,10 @@
  */
 package db;
 import db.Properties;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -52,12 +56,18 @@ public class PropertiesDB {
     
     public static List<Properties> getRecentProperties() {
         EntityManager em = DBUtil.getEmf().createEntityManager();
-        String q = "SELECT p from Properties p ORDER BY p.dateAdded DESC";
+        Date now = new Date();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, -7);
+        Date week = c.getTime();
+        
+        String q = "SELECT p from Properties p WHERE p.dateAdded <='" + df.format(now) + "'AND p.dateAdded >='" + df.format(week) + "'";
         TypedQuery<Properties> tq = em.createQuery(q, Properties.class);
         List<Properties> list;
 
         try {
-            list = tq.setMaxResults(6).getResultList();
+            list = tq.getResultList();
             if (list == null || list.isEmpty()) {
                 list = null;
             }

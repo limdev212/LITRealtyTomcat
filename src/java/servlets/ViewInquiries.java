@@ -5,6 +5,8 @@
  */
 package servlets;
 import db.Agents;
+import db.Inquiries;
+import db.InquiriesDB;
 import db.Properties;
 import db.Propertytypes;
 import db.Garagetypes;
