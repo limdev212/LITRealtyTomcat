@@ -134,7 +134,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="contact-form">
                        <shiro:guest>
-                        <form name="loginform" method="post">
+                           <form name="loginform" method="post">
                             <c:if test="${shiroLoginFailure != null}">
                                 Username or password incorrect
                             </c:if>

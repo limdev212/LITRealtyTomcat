@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        
             HttpSession session = request.getSession();
           org.apache.shiro.subject.Subject currentUser = SecurityUtils.getSubject();
           String agentDetails = (String) currentUser.getPrincipal();
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
           
           RequestDispatcher rd = request.getRequestDispatcher("AdminIndex");
           rd.forward(request, response);
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

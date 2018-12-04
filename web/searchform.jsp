@@ -12,7 +12,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>South - Real Estate Agency Template | Listings Details</title>
+    <title>LIT Realty - Home</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -28,6 +28,7 @@
         <div class="south-load"></div>
     </div>
 
+    <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
         <!-- Top Header Area -->
@@ -39,9 +40,12 @@
                 <div class="phone-number d-flex">
                     
                     <div class="number">
-                        
-                             <a href="">Welcome jamesryan99@gmail.com</a><a href="logout">Log out </a>
-                        
+                        <shiro:guest>
+                        <a href="login.jsp">Login</a>
+                        </shiro:guest>
+                        <shiro:user>
+                             <a href="">Welcome <shiro:principal/></a><a href="logout">Log out </a>
+                        </shiro:user>
                     </div>
                 </div>
             </div>
@@ -98,128 +102,162 @@
             </div>
         </div>
     </header>
+    <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcumb-content">
-                        <h3 class="breadcumb-title">Property</h3>
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Find your home</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero2.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Find your dream house</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero3.jpg);">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="hero-slides-content">
+                                <h2 data-animation="fadeInUp" data-delay="100ms">Find your perfect house</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Breadcumb Area End ##### -->
-
-    
-
-    <!-- ##### Listings Content Area Start ##### -->
-    <section class="listings-content-wrapper section-padding-100">
+    <!-- ##### Hero Area End ##### -->
+    <!-- ##### Advance Search Area Start ##### -->
+    <div class="south-search-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <!-- Single Listings Slides -->
-                    <div class="single-listings-sliders owl-carousel">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-1.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-2.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-3.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img src="images/properties/large/${property.listingNum}/${property.listingNum}-4.jpg" alt="">
-                        <!-- Single Slide -->
-                        <img style="max-height: 400px" src="images/properties/large/${property.listingNum}/${property.listingNum}-5.jpg" alt="">
-                    </div>
-                </div>
-            </div>
+                    <div class="advanced-search-form">
+                        <!-- Search Title -->
+                        <div class="search-title">
+                            <p>Search for your home</p>
+                        </div>
+                        <!-- Search Form -->
+                        <form action="SearchServlet" style="min-height: 30px" method="post" id="advanceSearch">
+                            <div class="row">
 
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="listings-content">
-                        <!-- Price -->
-                        <div class="list-price">
-                            <p>&euro;${property.price}</p>
-                        </div>
-                        <h5>${property.street}</h5>
-                        <p class="location"><img src="img/icons/location.png" alt="">${property.city}</p>
-                        <p>${property.description}</p>
-                        <!-- Meta -->
-                        <div class="property-meta-data d-flex align-items-end">
-                            <div class="new-tag">
-                                <img src="img/icons/new.png" alt="">
-                            </div>
-                            <div class="bathroom">
-                                <img src="img/icons/bathtub.png" alt="">
-                                <span>${property.bathrooms}</span>
-                            </div>
-                            <div class="garage">
-                                <img src="img/icons/garage.png" alt="">
-                                <span>${property.garagesize}</span>
-                            </div>
-                            <div class="space">
-                                <img src="img/icons/space.png" alt="">
-                                <span>${property.squarefeet}</span>
-                            </div>
-                        </div>
-                        <!-- Core Features -->
-                        <ul class="listings-core-features d-flex align-items-center">
-                            <li><i class="fa fa-check" aria-hidden="true"></i>${property.bedrooms} Bedrooms</li>
-                            <li><i class="fa fa-check" aria-hidden="true"></i>${property.berRating}</li>
-                            
-                        </ul>
-                        
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="contact-realtor-wrapper">
-                        <div class="realtor-info">
-                            <img src="img/bg-img/listing.jpg" alt="">
-                            <div class="realtor---info">
-                                <h2>${agent.name}</h2>
-                                <p>Realtor</p>
-                                <h6><img src="img/icons/phone-call.png" alt=""> ${agent.phone}</h6>
-                                <h6><img src="img/icons/envelope.png" alt=""> ${agent.email}</h6>
-                            </div>
-                            <div class="realtor--contact-form">
-                                <form action="AddInquiry" method="post">
+                                
+
+                                <div class="col-12 col-md-4 col-lg-4">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" id="realtor-name" placeholder="Your Name">
+                                        <select class="form-control" id="cities">
+                                            <option>Belfast</option>
+                                            <option>Derry</option>
+                                            <option>Limerick</option>
+                                            <option>Killkenny</option>
+                                            <option>Dublin 9</option>
+                                            <option>Tullamore</option>
+                                            <option>Portarlington</option>
+                                            <option>Cork</option>
+                                            <option>Galway</option>
+                                            <option>Dublin 1</option>
+                                            <option>Dublin 3</option>
+                                            <option>Dublin 4</option>
+                                            <option>Dublin 11</option>
+                                            <option>Portlaois</option>
+                                            <option>Co. Dublin</option>
+                                            
+                                        </select>
                                     </div>
+                                </div>
+
+                                <div class="col-12 col-md-4 col-lg-4">
                                     <div class="form-group">
-                                        <input type="text" name="number" class="form-control" id="realtor-name" placeholder="Your Number">
+                                        <select class="form-control" id="catagories">
+                                            <option>Less than 100,000</option>
+                                            <option>100,000 - 150,000</option>
+                                            <option>150,000 - 200,000</option>
+                                            <option>200,000 - 250,000</option>
+                                            <option>250,000 - 300,000</option>
+                                            <option>300,000 - 350,000</option>
+                                        </select>
                                     </div>
-                                    <div style="display:none" class="form-group">
-                                        <input value="${agent.agentId}" type="text" name="agentid" class="form-control" id="realtor-number" placeholder="Your Number">
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <div class="col-12 d-flex justify-content-between align-items-end">
+                                    
+                                    <!-- Submit -->
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn south-btn">Search</button>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="enumber" name="email" class="form-control" id="realtor-email" placeholder="Your Mail">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" id="realtor-message" cols="30" rows="10" placeholder="Your Message"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn south-btn">Send Message</button>
-                                </form>
+                                </div>
+                                </div>
+                             </div>
+                            <div class="row">
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Listing Maps -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="listings-maps mt-100">
-                        <div id="googleMap"></div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- ##### Advance Search Area End ##### -->
+    
+
+    <!-- ##### Featured Properties Area Start ##### -->
+    <section class="featured-properties-area section-padding-100-50">
+        <div class="container">
+            <div class="row">
+                
+            </div>
+
+            <div style="min-height: 800px" class="row">
+                  
+                
+                
+
+                
+            </div>
+        </div>
     </section>
-    <!-- ##### Listings Content Area End ##### -->
+    <!-- ##### Featured Properties Area End ##### -->
+
+    
+    <!-- ##### Call To Action Area End ##### -->
+
+    <!-- ##### Testimonials Area Start ##### -->
+    <section class="south-testimonials-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                   
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Testimonials Area End ##### -->
+
+    
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay" style="background-image: url(img/bg-img/cta.jpg);">
@@ -344,7 +382,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/jquery-ui.min.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
-    
 
 </body>
 

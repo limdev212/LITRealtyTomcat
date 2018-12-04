@@ -22,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -64,8 +65,19 @@ public class EditProperty extends HttpServlet {
             
             request.setAttribute("style", s);
             
-            RequestDispatcher rd = request.getRequestDispatcher("edit-property.jsp");
-            rd.forward(request, response);
+            HttpSession session = request.getSession();
+            Agents agent = (Agents) session.getAttribute("loginAgent");
+            Integer agentID = agent.getAgentId();
+            
+            if (agentID == a.getAgentId()){
+                RequestDispatcher rd = request.getRequestDispatcher("edit-property.jsp");
+                rd.forward(request, response);
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("no-permission.jsp");
+                rd.forward(request, response);
+            }
+            
+            
         
     }
 

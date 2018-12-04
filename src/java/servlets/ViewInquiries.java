@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package servlets;
-
-import db.Properties;
 import db.Agents;
+import db.Properties;
+import db.Propertytypes;
+import db.Garagetypes;
+import db.Styles;
+import db.StylesDB;
 import db.PropertiesDB;
+import db.PropertytypesDB;
+import db.AgentsDB;
+import db.GarageDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -23,8 +29,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author James
  */
-@WebServlet(name = "AdminIndex", urlPatterns = {"/AdminIndex"})
-public class AdminIndex extends HttpServlet {
+@WebServlet(name = "EditProperty", urlPatterns = {"/EditProperty"})
+public class ViewInquiries extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,14 +46,17 @@ public class AdminIndex extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
             HttpSession session = request.getSession();
-            Agents a = (Agents) session.getAttribute("loginAgent");
-            Integer agentID = a.getAgentId();
+            Agents agent = (Agents) session.getAttribute("loginAgent");
+            Integer agentID = agent.getAgentId();
             
-            List<Properties> pList = PropertiesDB.getPropertiesByAgentID(agentID);
-            request.setAttribute("list", pList);
+            List<Inquiries> iList = InquiriesDB.getInquiriesByAgentID(agentID);
+            request.setAttribute("list", iList);
             
-            RequestDispatcher rd = request.getRequestDispatcher("admin-index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("no-permission.jsp");
             rd.forward(request, response);
+            
+            
+            
         
     }
 

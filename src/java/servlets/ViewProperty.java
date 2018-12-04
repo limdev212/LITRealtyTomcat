@@ -5,6 +5,8 @@
  */
 package servlets;
 
+import db.Agents;
+import db.AgentsDB;
 import db.Properties;
 import db.PropertiesDB;
 import java.io.IOException;
@@ -37,10 +39,15 @@ public class ViewProperty extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
             
+            
             Integer propertyId = Integer.parseInt(request.getParameter("id"));
             
             Properties p = PropertiesDB.getPropertyByID(propertyId);
             request.setAttribute("property", p);
+            
+            Agents a = AgentsDB.getAgentByID(p.getAgentId());
+            
+            request.setAttribute("agent", a);
             
             RequestDispatcher rd = request.getRequestDispatcher("property.jsp");
             rd.forward(request, response);
